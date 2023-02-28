@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=58"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sphinx_simpleversion"
+authors = [{ name = "Isak Samsten", email = "isak@samsten.se" }]
+readme = "README.md"
+description = "Simple versioning of sphinx documentation"
+dynamic = ["version"]
+license = { text = "BSD-3-Clause" }
+dependencies = ["sphinx"]
+classifiers = [
+    'Development Status :: 3 - Alpha',
+    'Environment :: Console',
+    'Framework :: Sphinx :: Extension',
+    'Intended Audience :: Developers',
+    'License :: OSI Approved :: MIT License',
+    'Operating System :: MacOS',
+    'Operating System :: POSIX :: Linux',
+    'Operating System :: POSIX',
+    'Programming Language :: Python :: 3.6',
+    'Programming Language :: Python :: 3.7',
+    'Programming Language :: Python :: 3.8',
+    'Programming Language :: Python :: 3.9',
+    'Programming Language :: Python :: 3.10',
+    'Programming Language :: Python :: 3.11',
+    'Programming Language :: Python :: Implementation :: PyPy',
+    'Topic :: Documentation :: Sphinx',
+    'Topic :: Software Development :: Documentation',
+]
+
+
+[tool.setuptools.dynamic]
+version = { attr = "sphinx_simpleversion.__version__" }
