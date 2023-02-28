@@ -4,7 +4,7 @@ import subprocess
 from pkg_resources import parse_version
 from sphinx import application, config
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 
 DEFAULT_INCLUDE_BRANCH_PATTERN = r"(?P<version>\d+.\d+).X"
 DEFAULT_DEVELOP_BRANCH = "master"
@@ -83,7 +83,7 @@ class Versions:
 
     def __versions_from_git(self):
         with subprocess.Popen(
-            ["git branch --format '%(refname:short)'"],
+            ["git branch -r --format '%(refname:lstrip=-1)'"],
             stdout=subprocess.PIPE,
             shell=True,
         ) as cmd:
