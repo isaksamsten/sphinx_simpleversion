@@ -53,7 +53,14 @@ class Versions:
             url_base="master",
             name="main",
         )
-        self.stable_version = self.versions[0]
+        if self.versions:
+            self.stable_version = self.versions[0]
+        else:
+            self.stable_version = self.develop_version
+            # If the develop version is the only version
+            # we consider it as released.
+            self.develop_version.is_released = True
+
         self.versions.insert(0, self.develop_version)
         current_version = [v for v in self.versions if v.is_current]
         self.current_version = current_version[0]
