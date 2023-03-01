@@ -25,6 +25,20 @@ versions_develop_branch = "main"
 versions_include_branch_pattern = r"(?P<version>\d+.\d+).X"
 ```
 
+### Configuration options
+
+- `versions_develop_branch` (`str`): The main develop branch where documentation
+  is also built. This release will be marked with is_release=False, unless its
+  the only documentation we build.
+
+- `versions_include_branch_pattern` (`str`, regular expression): The other
+  branches that will have documentation built for them. We need to specify one
+  part of the regular expression as `(?P<version>)` to extract the version name.
+  By default, the included branches follow the naming convention of
+  `{major}.{minor}.X`.
+
+## Templates
+
 Now your templates have the following context variable:
 
 ```
@@ -84,21 +98,6 @@ documentation:
 </div>
 {% endif %}
 ```
-
-## Configuration options
-
-`versions_develop_branch`
-
-: (`str`) The main develop branch where documentation is also built. This
-release will be marked with is_release=False, unless its the only documentation
-we build.
-
-`versions_include_branch_pattern`
-
-: (`str`, regular expression) The other branches that will have documentation
-built for them. We need to specify one part of the regular expression as
-`(?P<version>)` to extract the version name. By default, the included branches
-follow the naming convention of `{major}.{minor}.X`.
 
 ## Github Actions example
 
