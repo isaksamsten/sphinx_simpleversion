@@ -136,43 +136,43 @@ on:
       - 1.1.X
 
 build_docs:
-runs-on: ubuntu-latest
-strategy:
-    fail-fast: true
-    max-parallel: 1
-    matrix:
-    branch: [main, 1.1.X, 1.0.X]
+    runs-on: ubuntu-latest
+    strategy:
+        fail-fast: true
+        max-parallel: 1
+        matrix:
+        branch: [main, 1.1.X, 1.0.X]
 
-steps:
-    - uses: actions/checkout@v3
-    with:
-        fetch-depth: 0
-        ref: ${{ matrix.branch }}
+    steps:
+        - uses: actions/checkout@v3
+        with:
+            fetch-depth: 0
+            ref: ${{ matrix.branch }}
 
-    - uses: actions/setup-python@v4
-    name: Install Python
-    with:
-        python-version: "3.9"
+        - uses: actions/setup-python@v4
+        name: Install Python
+        with:
+            python-version: "3.9"
 
-    - name: Install requirements
-    run: |
-        python -m pip install --upgrade pip
-        python -m pip install -r requirements.txt
+        - name: Install requirements
+        run: |
+            python -m pip install --upgrade pip
+            python -m pip install -r requirements.txt
 
-    - name: Install current version
-    run: pip install --force-reinstall .
+        - name: Install current version
+        run: pip install --force-reinstall .
 
-    - name: Build docmentation
-    run: |
-        mkdir html
-        python -I -m sphinx . html
+        - name: Build docmentation
+        run: |
+            mkdir html
+            python -I -m sphinx . html
 
-    - name: Deploy documentation
-    uses: peaceiris/actions-gh-pages@v3
-    with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./html
-        destination_dir: ${{ matrix.branch }}
+        - name: Deploy documentation
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            publish_dir: ./html
+            destination_dir: ${{ matrix.branch }}
 ```
 
 What is left, is to manually specify an `index.html` in the root of `gh-pages`.
